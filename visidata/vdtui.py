@@ -626,7 +626,9 @@ class VisiData:
         'Get keystroke and display it on status bar.'
         k = None
         try:
-            k = scr.get_wch()
+            k = scr.getch()
+            #k = scr.get_wch()
+            #k = scr.getch() #windows doesnt have unicode sigh :(
             self.drawRightStatus(scr, vs or self.sheets[0]) # continue to display progress %
         except curses.error:
             return ''  # curses timeout
@@ -635,6 +637,7 @@ class VisiData:
             if ord(k) >= 32 and ord(k) != 127:  # 127 == DEL or ^?
                 return k
             k = ord(k)
+        return curses.keyname(1).decode('utf-8')
         return curses.keyname(k).decode('utf-8')
 
 

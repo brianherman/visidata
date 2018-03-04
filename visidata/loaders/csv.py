@@ -7,7 +7,8 @@ option('csv_delimiter', ',', 'delimiter passed to csv.reader')
 option('csv_quotechar', '"', 'quotechar passed to csv.reader')
 option('csv_skipinitialspace', True, 'skipinitialspace passed to csv.reader')
 
-csv.field_size_limit(sys.maxsize)
+csv.field_size_limit(256) #lets make this 256 for windows???
+#csv.field_size_limit(sys.maxsize)
 
 def open_csv(p):
     vs = Sheet(p.name, source=p)
